@@ -9,6 +9,7 @@ import "./normalize.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import theme from "./constants/theme";
+import { PokemonProvider } from "./components/MyPokemon";
 
 const client = new ApolloClient({
   uri: "https://graphql-pokeapi.vercel.app/api/graphql",
@@ -18,9 +19,11 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
+      <PokemonProvider>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </PokemonProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
