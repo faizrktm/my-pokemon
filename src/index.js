@@ -10,10 +10,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import theme from "./constants/theme";
 import { PokemonProvider } from "./components/MyPokemon";
+import offsetLimitPagination from "./utils/offsetLimitPagination";
 
 const client = new ApolloClient({
   uri: "https://graphql-pokeapi.vercel.app/api/graphql",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          pokemons: offsetLimitPagination(),
+        },
+      },
+    },
+  }),
 });
 
 ReactDOM.render(
