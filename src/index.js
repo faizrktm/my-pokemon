@@ -6,6 +6,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { jsx, ThemeProvider } from "@emotion/react";
 
 import "./normalize.css";
+import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import theme from "./constants/theme";
@@ -30,7 +31,9 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <PokemonProvider>
         <ApolloProvider client={client}>
-          <App />
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <App />
+          </React.Suspense>
         </ApolloProvider>
       </PokemonProvider>
     </ThemeProvider>
