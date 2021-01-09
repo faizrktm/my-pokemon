@@ -32,22 +32,40 @@ const theme = {
     700: "3rem",
   },
   breakpoint: {
-    mobile: 0,
-    tablet: "768px",
-    desktop: "1024px",
+    mobile: "@media (min-width: 0px)",
+    tablet: "@media (min-width: 768px)",
+    desktop: "@media (min-width: 1024px)",
   },
   fontVariant: {
     label: {
-      fontSize: "1.5rem",
-      lineHeight: "1.5em",
+      mobile: {
+        fontSize: "1.25rem",
+        lineHeight: "1.5em",
+      },
+      tablet: {
+        fontSize: "1.5rem",
+        lineHeight: "1.5em",
+      },
     },
     heading: {
-      fontSize: "2rem",
-      lineHeight: "1.5em",
+      mobile: {
+        fontSize: "1.875rem",
+        lineHeight: "1.5em",
+      },
+      tablet: {
+        fontSize: "2rem",
+        lineHeight: "1.5em",
+      },
     },
     default: {
-      fontSize: "1rem",
-      lineHeight: "1.5em",
+      mobile: {
+        fontSize: "0.875rem",
+        lineHeight: "1.5em",
+      },
+      tablet: {
+        fontSize: "1rem",
+        lineHeight: "1.5em",
+      },
     },
   },
 };

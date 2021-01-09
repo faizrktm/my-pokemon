@@ -8,7 +8,7 @@ export function breakpoint(bp) {
   return (style) => {
     return (props) => {
       const { breakpoint } = props.theme;
-      return `@media (min-width: ${breakpoint[bp]}) {
+      return `${breakpoint[bp]} {
           ${style[0]}
         }`;
     };

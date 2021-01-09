@@ -14,7 +14,10 @@ export default function Text({
   return (
     <TextComponent
       css={{
-        ...theme.fontVariant[variant],
+        ...theme.fontVariant[variant].mobile,
+        [theme.breakpoint.tablet]: {
+          ...theme.fontVariant[variant].tablet,
+        },
         color: theme.color[color],
         fontWeight: weight,
         textTransform,

@@ -3,7 +3,7 @@
 import { jsx, useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
-import { shadow } from "../../../utils/theme";
+import { breakpoint, shadow } from "../../../utils/theme";
 
 export default function Card({ children, backgroundColor }) {
   const theme = useTheme();
@@ -26,8 +26,12 @@ const StyledCard = styled.div`
   position: relative;
   box-shadow: ${shadow(200)};
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   min-height: 130px;
+
+  ${breakpoint("tablet")`
+    padding: 1rem;
+  `}
 `;
