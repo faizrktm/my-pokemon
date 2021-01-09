@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { render } from "@testing-library/react";
-import { BrowserRouter, Switch } from "react-router-dom";
 import { MockedProvider } from "@apollo/client/testing";
 
 const TestWrapper = ({ children }) => {
@@ -16,9 +15,7 @@ const TestWrapper = ({ children }) => {
   }, []);
   return (
     <MockedProvider mocks={mocks} addTypename={false}>
-      <BrowserRouter>
-        <Switch>{children}</Switch>
-      </BrowserRouter>
+      {children}
     </MockedProvider>
   );
 };
