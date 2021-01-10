@@ -5,12 +5,14 @@ import styled from "@emotion/styled";
 
 import { shadow } from "../../../utils/theme";
 
-export default function Card({ children, backgroundColor }) {
+export default function Card({ children, sx }) {
+  const { backgroundColor, ...restOfSx } = sx;
   const theme = useTheme();
   return (
     <StyledCard
       css={{
         backgroundColor: theme.color[backgroundColor],
+        ...restOfSx,
       }}
     >
       {children}
@@ -19,7 +21,7 @@ export default function Card({ children, backgroundColor }) {
 }
 
 Card.defaultProps = {
-  color: "ui-1",
+  sx: {},
 };
 
 const StyledCard = styled.div`

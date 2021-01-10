@@ -2,11 +2,12 @@ import * as React from "react";
 import { useQuery } from "@apollo/client";
 
 import { GET_POKEMONS } from "./query";
-import { Page } from "./components";
+import { Button, Page, Text, Box } from "./components";
 const List = React.lazy(() => import("./components/pokemons/List"));
 
 function App() {
-  const { data, fetchMore } = useQuery(GET_POKEMONS, {
+  const { data, fetchMore, loading } = useQuery(GET_POKEMONS, {
+    notifyOnNetworkStatusChange: true,
     variables: {
       offset: 0,
       limit: 10,
@@ -21,15 +22,32 @@ function App() {
     });
   };
 
+  const hasMore = data?.pokemons?.nextOffset > 0;
+
   return (
-    <Page title="Pokeman">
+    <Page title="Pokedex">
       <List data={data} />
-      <button
-        onClick={fetchNext}
-        style={{ marginTop: "1rem", marginBottom: "1rem" }}
-      >
-        Fetch More
-      </button>
+      {loading && (
+        <Box
+          sx={{
+            mt: 700,
+          }}
+        >
+          <Text variant="label" sx={{ textAlign: "center" }}>
+            Loading ...
+          </Text>
+        </Box>
+      )}
+      {hasMore && !loading && (
+        <Button
+          onClick={fetchNext}
+          sx={{
+            mt: 700,
+            mb: 500,
+          }}
+          label="Fetch More"
+        />
+      )}
     </Page>
   );
 }

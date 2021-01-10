@@ -7,7 +7,7 @@ const Page = ({ children, title }) => {
   return (
     <Main>
       {title ? (
-        <Box data-testid="title" mb={500}>
+        <Box data-testid="title" sx={{ mb: 500 }}>
           <Text as="h1" variant="heading">
             {title}
           </Text>

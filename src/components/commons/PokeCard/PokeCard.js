@@ -5,9 +5,9 @@ import { Text } from "../Text";
 
 export default function PokeCard({ image, name }) {
   return (
-    <Card backgroundColor="ui-1">
+    <Card sx={{ backgroundColor: "ui-1" }}>
       <Image src={image} alt={name} />
-      <Text variant="label" textTransform="capitalize">
+      <Text variant="label" sx={{ textTransform: "capitalize" }}>
         {name}
       </Text>
     </Card>

@@ -2,15 +2,9 @@
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
 
-export default function Text({
-  color,
-  textTransform,
-  weight,
-  variant,
-  children,
-  ...rest
-}) {
+export default function Text({ variant, children, sx, ...rest }) {
   const { fontVariant, breakpoint, color: colors } = useTheme();
+  const { color = "text-1", textTransform, weight = 400, ...restOfSx } = sx;
   return (
     <span
       css={{
@@ -22,6 +16,7 @@ export default function Text({
         fontWeight: weight,
         textTransform,
         fontFamily: "Rubik, sans-serif",
+        ...restOfSx,
       }}
       {...rest}
     >
@@ -31,7 +26,6 @@ export default function Text({
 }
 
 Text.defaultProps = {
-  weight: 400,
   variant: "default",
-  color: "text-1",
+  sx: {},
 };
