@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-import { spacing } from "../../utils/theme";
+import { breakpoint, spacing } from "../../utils/theme";
 import { PokeCard } from "../commons/PokeCard";
 
 export default function List({ data }) {
@@ -15,6 +15,10 @@ export default function List({ data }) {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: auto;
   grid-gap: ${spacing(500)};
+
+  ${breakpoint("tablet")`
+    grid-template-columns: repeat(2, auto);
+  `}
 `;

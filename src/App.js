@@ -22,7 +22,7 @@ function App() {
   };
 
   return (
-    <Page>
+    <Page title="Pokeman">
       <List data={data} />
       <button
         onClick={fetchNext}

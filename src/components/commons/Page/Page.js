@@ -1,6 +1,22 @@
 import styled from "@emotion/styled";
 
-const Page = ({ children }) => <Main>{children}</Main>;
+import { Box } from "../Box";
+import { Text } from "../Text";
+
+const Page = ({ children, title }) => {
+  return (
+    <Main>
+      {title ? (
+        <Box data-testid="title" mb={500}>
+          <Text as="h1" variant="heading">
+            {title}
+          </Text>
+        </Box>
+      ) : null}
+      {children}
+    </Main>
+  );
+};
 
 export default Page;
 

@@ -93,9 +93,14 @@ describe("MyPokemon", () => {
     const pokelist = getByText(/ivysaur/);
     expect(pokelist).toBeInTheDocument();
 
-    // try to remove from pokewallet
+    // try to add same pokemon with same nickname
     userEvent.click(btn);
     const err = getByTestId("errMessage");
     expect(err).toBeInTheDocument();
+
+    // try to delete pokemon
+    const removeBtn = getByTestId("removeBtn");
+    userEvent.click(removeBtn);
+    expect(getByText(/found/i)).toBeInTheDocument();
   });
 });

@@ -1,6 +1,9 @@
 import React, { useMemo } from "react";
 import { render } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
+import { ThemeProvider } from "@emotion/react";
+
+import theme from "../constants/theme";
 
 const TestWrapper = ({ children }) => {
   const mocks = useMemo(() => {
@@ -15,7 +18,7 @@ const TestWrapper = ({ children }) => {
   }, []);
   return (
     <MockedProvider mocks={mocks} addTypename={false}>
-      {children}
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </MockedProvider>
   );
 };

@@ -1,7 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
-import styled from "@emotion/styled";
 
 export default function Text({
   color,
@@ -9,22 +8,25 @@ export default function Text({
   weight,
   variant,
   children,
+  ...rest
 }) {
-  const theme = useTheme();
+  const { fontVariant, breakpoint, color: colors } = useTheme();
   return (
-    <TextComponent
+    <span
       css={{
-        ...theme.fontVariant[variant].mobile,
-        [theme.breakpoint.tablet]: {
-          ...theme.fontVariant[variant].tablet,
+        ...fontVariant[variant].mobile,
+        [breakpoint.tablet]: {
+          ...fontVariant[variant].tablet,
         },
-        color: theme.color[color],
+        color: colors[color],
         fontWeight: weight,
         textTransform,
+        fontFamily: "Rubik, sans-serif",
       }}
+      {...rest}
     >
       {children}
-    </TextComponent>
+    </span>
   );
 }
 
@@ -33,7 +35,3 @@ Text.defaultProps = {
   variant: "default",
   color: "text-1",
 };
-
-const TextComponent = styled.span`
-  font-family: Rubik, sans-serif;
-`;

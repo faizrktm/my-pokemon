@@ -26,3 +26,9 @@ export function shadow(shade) {
     return props.theme.shadow[shade];
   };
 }
+
+export function color(shade) {
+  return (props) => {
+    return props.theme.color[shade];
+  };
+}
