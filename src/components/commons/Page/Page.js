@@ -8,7 +8,7 @@ const Page = ({ children, title }) => {
     <Main>
       {title ? (
         <Box data-testid="title" sx={{ mb: 500 }}>
-          <Text as="h1" variant="heading">
+          <Text as="h1" variant="heading" sx={{ textTransform: "capitalize" }}>
             {title}
           </Text>
         </Box>

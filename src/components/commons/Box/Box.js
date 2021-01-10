@@ -38,7 +38,7 @@ export default function Box({ children, sx, ...rest }) {
         display: display,
         flexDirection: flexDirection,
         boxShadow: shadow(boxShadow)({ theme }),
-        backgroundColor: color(backgroundColor),
+        backgroundColor: color(backgroundColor)({ theme }),
         ...restOfSx,
       }}
       {...rest}

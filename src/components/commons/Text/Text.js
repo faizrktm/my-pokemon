@@ -1,12 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
+import styled from "@emotion/styled";
 
 export default function Text({ variant, children, sx, ...rest }) {
   const { fontVariant, breakpoint, color: colors } = useTheme();
   const { color = "text-1", textTransform, weight = 400, ...restOfSx } = sx;
   return (
-    <span
+    <TextComponent
       css={{
         ...fontVariant[variant].mobile,
         [breakpoint.tablet]: {
@@ -21,7 +22,7 @@ export default function Text({ variant, children, sx, ...rest }) {
       {...rest}
     >
       {children}
-    </span>
+    </TextComponent>
   );
 }
 
@@ -29,3 +30,5 @@ Text.defaultProps = {
   variant: "default",
   sx: {},
 };
+
+const TextComponent = styled.span``;

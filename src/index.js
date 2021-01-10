@@ -1,11 +1,8 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, ThemeProvider } from "@emotion/react";
+import { ThemeProvider } from "@emotion/react";
 
-import "./normalize.css";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
