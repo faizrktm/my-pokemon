@@ -1,6 +1,6 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
-import { render, cleanup } from "@testing-library/react";
+import { waitFor, render, cleanup } from "@testing-library/react";
 
 import {
   PokemonProvider,
@@ -26,10 +26,11 @@ beforeEach(() => {
 const Mutator = () => {
   const { data } = usePokemon();
   const [create, { error: errCreate }] = useMutatePokemon(CREATE);
-  const [remove] = useMutatePokemon(REMOVE);
+  const [remove, { error: errRemove }] = useMutatePokemon(REMOVE);
   return (
     <>
       {errCreate && <span data-testid="errMessage">{errCreate}</span>}
+      {errRemove && <span data-testid="errRemoveMessage">{errRemove}</span>}
       {data ? (
         <div>
           {Object.keys(data).map((item) => (
@@ -40,12 +41,23 @@ const Mutator = () => {
         <div>not found</div>
       )}
       <button
-        data-testid="addBtn"
         onClick={() => create("ivysaur", { name: "ivysaur" }).catch(() => {})}
       >
-        Add Pokemon
+        Add Ivysaur
       </button>
-      <button data-testid="removeBtn" onClick={() => remove("ivysaur")}>
+      <button
+        onClick={() =>
+          create("bulbasaur", { name: "bulbasaur" }).catch(() => {})
+        }
+      >
+        Add Bulbasaur
+      </button>
+      <button
+        data-testid="removeBtn"
+        onClick={() => {
+          remove(Object.keys(data || {})?.[0]).catch(() => {});
+        }}
+      >
         Remove Pokemon
       </button>
     </>
@@ -73,12 +85,12 @@ describe("MyPokemon", () => {
     expect(window.localStorage.getItem).toHaveBeenCalledTimes(1);
   });
 
-  it("Should call localStorage setItem on add create and show error on duplicate", () => {
-    const { getByTestId, getByText } = render(<App />);
-    const btn = getByTestId("addBtn");
-    expect(btn).toBeInTheDocument();
+  it("Should call localStorage setItem on add create and show error on duplicate", async () => {
+    const { getByTestId, getByText, getAllByText } = render(<App />);
+    const [btn1, btn2] = getAllByText(/add/i);
+    expect(btn1).toBeInTheDocument();
 
-    userEvent.click(btn);
+    userEvent.click(btn1);
     expect(window.localStorage.setItem).toHaveBeenCalledTimes(1);
     expect(window.localStorage.setItem).toHaveBeenCalledWith(
       "my-pokemon",
@@ -94,13 +106,24 @@ describe("MyPokemon", () => {
     expect(pokelist).toBeInTheDocument();
 
     // try to add same pokemon with same nickname
-    userEvent.click(btn);
+    userEvent.click(btn1);
     const err = getByTestId("errMessage");
     expect(err).toBeInTheDocument();
+
+    // try to add another pokemon
+    userEvent.click(btn2);
+    // check existence of data just added
+    expect(getByText(/bulbasaur/)).toBeInTheDocument();
 
     // try to delete pokemon
     const removeBtn = getByTestId("removeBtn");
     userEvent.click(removeBtn);
-    expect(getByText(/found/i)).toBeInTheDocument();
+    userEvent.click(removeBtn);
+    await waitFor(() => expect(getByText(/found/i)).toBeInTheDocument());
+
+    // try to delete pokemon twice
+    const invalidRemove = getByTestId("removeBtn");
+    userEvent.click(invalidRemove);
+    expect(getByTestId("errRemoveMessage")).toBeInTheDocument();
   });
 });

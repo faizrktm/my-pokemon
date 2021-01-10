@@ -22,6 +22,9 @@ export function PokemonProvider({ children }) {
 
   const remove = (nickname) => {
     const toBeSaved = { ...data };
+    if (!nickname || !toBeSaved[nickname]) {
+      throw new Error("Pokemon not found");
+    }
     delete toBeSaved[nickname];
     if (!Object.keys(toBeSaved).length) {
       localStorage.removeItem(storageKey);
