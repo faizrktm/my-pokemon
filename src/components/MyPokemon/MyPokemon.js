@@ -11,8 +11,11 @@ export function PokemonProvider({ children }) {
   });
 
   const create = (nickname, pokemon) => {
+    if (!nickname || !pokemon) {
+      throw new Error("Nickname or Pokemon required");
+    }
     if (data?.[nickname]) {
-      throw new Error("Pokemon already exist, use different nickname.");
+      throw new Error("Pokemon already exist, use different nickname");
     }
     const toBeSaved = { [nickname]: pokemon, ...(data || {}) };
     localStorage.setItem(storageKey, JSON.stringify(toBeSaved));

@@ -3,14 +3,21 @@
 import { jsx, useTheme, css } from "@emotion/react";
 import { color, spacing } from "../../../utils/theme";
 
-export default function Button({ label, disabled, onClick, sx, ...rest }) {
+export default function Button({
+  loading,
+  label,
+  disabled,
+  onClick,
+  sx,
+  ...rest
+}) {
   const theme = useTheme();
 
   const { m, mt, mb, mr, ml, ...restOfSx } = sx;
 
   return (
     <button
-      onClick={disabled ? null : onClick}
+      onClick={disabled || loading ? null : onClick}
       css={{
         margin: spacing(m)({ theme }),
         marginTop: spacing(mt)({ theme }),

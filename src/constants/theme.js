@@ -41,30 +41,36 @@ const theme = {
       mobile: {
         fontSize: "1.25rem",
         lineHeight: "1.5em",
+        fontFamily: "Rubik, sans-serif",
       },
       tablet: {
         fontSize: "1.5rem",
         lineHeight: "1.5em",
+        fontFamily: "Rubik, sans-serif",
       },
     },
     heading: {
       mobile: {
         fontSize: "1.875rem",
         lineHeight: "1.5em",
+        fontFamily: "Rubik, sans-serif",
       },
       tablet: {
         fontSize: "2rem",
         lineHeight: "1.5em",
+        fontFamily: "Rubik, sans-serif",
       },
     },
     default: {
       mobile: {
         fontSize: "0.875rem",
         lineHeight: "1.5em",
+        fontFamily: "Rubik, sans-serif",
       },
       tablet: {
         fontSize: "1rem",
         lineHeight: "1.5em",
+        fontFamily: "Rubik, sans-serif",
       },
     },
   },

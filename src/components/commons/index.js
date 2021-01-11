@@ -4,3 +4,7 @@ export * from "./Page";
 export * from "./Text";
 export * from "./PokeCard";
 export * from "./Box";
+export * from "./Badge";
+export * from "./Image";
+export * from "./Portal";
+export * from "./TextInput";
