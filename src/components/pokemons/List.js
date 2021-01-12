@@ -14,7 +14,7 @@ export default function List({ data, isPokeBag }) {
   return (
     <Container>
       {isPokeBag
-        ? Object?.keys(data)?.map((item, id) => (
+        ? Object.keys(data || {})?.map((item, id) => (
             <Link
               key={id}
               to={{
