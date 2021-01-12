@@ -1,11 +1,26 @@
 import styled from "@emotion/styled";
+import { Link, useRouteMatch } from "react-router-dom";
 
 import { Box } from "../Box";
 import { Text } from "../Text";
 
 const Page = ({ children, title }) => {
+  let match = useRouteMatch("/pokebag");
+
   return (
     <Main>
+      <Box
+        sx={{ flexDirection: "row", justifyContent: "space-between", mb: 500 }}
+      >
+        <Link to="/">
+          <Text>Home</Text>
+        </Link>
+        {!match && (
+          <Link to="/pokebag">
+            <Text>Pokebag</Text>
+          </Link>
+        )}
+      </Box>
       {title ? (
         <Box data-testid="title" sx={{ mb: 500 }}>
           <Text as="h1" variant="heading" sx={{ textTransform: "capitalize" }}>

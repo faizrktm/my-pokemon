@@ -20,7 +20,8 @@ export default function Button({
       type={type}
       onClick={disabled ? null : onClick}
       css={{
-        padding: "0px",
+        display: "flex",
+        padding: 0,
         border: "none",
         cursor: "pointer",
         background: "transparent",

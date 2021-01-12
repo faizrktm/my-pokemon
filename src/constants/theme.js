@@ -11,6 +11,7 @@ const theme = {
     "text-3": "#a8a8a8",
     "text-4": "#ffffff",
     "text-5": "#6f6f6f",
+    "text-error": "#c23934",
     "interactive-1": "#0f62fe",
     "interactive-1-hover": "#0353e9",
     "interactive-1-active": "#002d9c",

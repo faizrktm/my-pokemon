@@ -4,6 +4,7 @@ import { jsx, useTheme, css } from "@emotion/react";
 import { color, spacing } from "../../../utils/theme";
 
 export default function Button({
+  variant,
   loading,
   label,
   disabled,
@@ -14,6 +15,33 @@ export default function Button({
   const theme = useTheme();
 
   const { m, mt, mb, mr, ml, ...restOfSx } = sx;
+
+  const variants = {
+    primary: {
+      backgroundColor: color("interactive-1")({ theme }),
+      color: color("text-4")({ theme }),
+      border: `1px solid ${color("interactive-1")({ theme })}`,
+      "&:hover": css({
+        backgroundColor: color("interactive-1-hover")({ theme }),
+      }),
+      "&:active": css({
+        backgroundColor: color("interactive-1-active")({ theme }),
+      }),
+    },
+    secondary: {
+      backgroundColor: color("text-4")({ theme }),
+      color: color("interactive-1")({ theme }),
+      border: `1px solid ${color("interactive-1")({ theme })}`,
+      "&:hover": css({
+        color: color("interactive-1-hover")({ theme }),
+        border: `1px solid ${color("interactive-1-hover")({ theme })}`,
+      }),
+      "&:active": css({
+        color: color("interactive-1-active")({ theme }),
+        border: `1px solid ${color("interactive-1-active")({ theme })}`,
+      }),
+    },
+  };
 
   return (
     <button
@@ -26,17 +54,9 @@ export default function Button({
         marginRight: spacing(mr)({ theme }),
         fontFamily: "Rubik, sans-serif",
         padding: spacing(500)({ theme }),
-        backgroundColor: color("interactive-1")({ theme }),
-        color: color("text-4")({ theme }),
-        border: "none",
         borderRadius: "8px",
         cursor: "pointer",
-        "&:hover": css({
-          backgroundColor: color("interactive-1-hover")({ theme }),
-        }),
-        "&:active": css({
-          backgroundColor: color("interactive-1-active")({ theme }),
-        }),
+        ...variants[variant],
         ...restOfSx,
       }}
       {...rest}
@@ -50,4 +70,5 @@ Button.defaultProps = {
   disabled: false,
   onClick: () => {},
   sx: {},
+  variant: "primary",
 };

@@ -6,7 +6,7 @@ import { Button, Page, Text, Box } from "../components";
 const List = React.lazy(() => import("../components/pokemons/List"));
 
 export default function App() {
-  const { data, fetchMore, loading } = useQuery(GET_POKEMONS, {
+  const { data, fetchMore, loading, error } = useQuery(GET_POKEMONS, {
     notifyOnNetworkStatusChange: true,
     variables: {
       offset: 0,
@@ -15,18 +15,20 @@ export default function App() {
   });
 
   const fetchNext = () => {
-    fetchMore({
-      variables: {
-        offset: data?.pokemons?.nextOffset,
-      },
-    });
+    try {
+      fetchMore({
+        variables: {
+          offset: data?.pokemons?.nextOffset,
+        },
+      });
+    } catch (_) {}
   };
 
   const hasMore = data?.pokemons?.nextOffset > 0;
 
   return (
     <Page title="Pokedex">
-      <List data={data} />
+      <List data={data?.pokemons?.results} />
       {loading && (
         <Box
           sx={{
@@ -35,6 +37,17 @@ export default function App() {
         >
           <Text variant="label" sx={{ textAlign: "center" }}>
             Loading ...
+          </Text>
+        </Box>
+      )}
+      {error && (
+        <Box
+          sx={{
+            mt: 700,
+          }}
+        >
+          <Text color="text-danger" sx={{ textAlign: "center" }}>
+            {error}
           </Text>
         </Box>
       )}

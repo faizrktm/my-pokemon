@@ -1,3 +1,5 @@
+import { css } from "@emotion/react";
+
 /**
  *
  * @param {string} bp
@@ -8,9 +10,11 @@ export function breakpoint(bp) {
   return (style) => {
     return (props) => {
       const { breakpoint } = props.theme;
-      return `${breakpoint[bp]} {
+      return css`
+        ${breakpoint[bp]} {
           ${style[0]}
-        }`;
+        }
+      `;
     };
   };
 }
