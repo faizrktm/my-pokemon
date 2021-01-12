@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { render } from "@testing-library/react";
 import { MockedProvider } from "@apollo/client/testing";
 import { ThemeProvider } from "@emotion/react";
+import { BrowserRouter, Switch } from "react-router-dom";
 
 import theme from "../constants/theme";
 
@@ -18,7 +19,11 @@ const TestWrapper = ({ children }) => {
   }, []);
   return (
     <MockedProvider mocks={mocks} addTypename={false}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Switch>{children}</Switch>
+        </BrowserRouter>
+      </ThemeProvider>
     </MockedProvider>
   );
 };
