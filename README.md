@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Pokebag APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Web Based Single Page Application of Pokemon Library to catch and safe it to your own bag.
 
-## Available Scripts
+Demo available at: [https://pokebag.vercel.app](https://pokebag.vercel.app)
 
-In the project directory, you can run:
+## Getting Started
 
-### `yarn start`
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Make sure you already have yarn or npm installed on your machine. If not, please take a look at this link below.
 
-### `yarn test`
+[https://classic.yarnpkg.com/en/docs/install](https://classic.yarnpkg.com/en/docs/install)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installing
 
-### `yarn build`
+After that, install required dependencies by executing this command on terminal
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+yarn install
+# or
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+After instalation success, run command below to make your code available in development mode.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+yarn start
+```
 
-### `yarn eject`
+Open [http://localhost:3000](http://localhost:3000) to see the website
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Development
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+We are using git flow for development purpose. Please use this prefix for branches on spesific use case of development
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 1. feature/branch_name
+Checkout from branch `develop` and create `feature/branch_name` for creating new feature.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### 2. hotfix/branch_name
+Checkout from branch `master` and create `hotfix/branch_name` for creating hotfix or immediate fix on production.
 
-## Learn More
+## Running on production
+Kindly use this command to build app for production and serve it.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+yarn build && yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open [http://localhost:3000](http://localhost:3000) to see the website
 
-### Code Splitting
+## Testing
+This project contain unit testing and integration testing. All the test files have *.test.js name.
+To launch test runner in interactive watch mode for current uncommit codes, run
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+yarn test
+```
+To watch all test and see coverage run
 
-### Analyzing the Bundle Size
+```
+yarn test --coverage --watchAll
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Deployment
 
-### Making a Progressive Web App
+For this project we are using [Vercel](https://vercel.com/) because it is easy and support Create React App project.
+It has built in CI/CD to detect changes/merge on default branch to create new build.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Built With
+* [Poke GQL API](https://github.com/mazipan/graphql-pokeapi) - The Pokemon Graphql API
+* [Create React App](https://github.com/facebook/create-react-app) - The web framework used
+* [Emotion](https://emotion.sh) CSS in JS library
+* [Apollo Client](https://github.com/apollographql/apollo-client) GQL Client
+* [Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage): To store the catched Pokemon
+* [React Testing Library](https://github.com/testing-library/react-testing-library): Unit and Integration Test Library
 
-### Advanced Configuration
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **Faiz Azmi Rekatama** - *Initial work* - [faizrktm](https://github.com/faizrktm)
