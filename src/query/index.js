@@ -30,9 +30,6 @@ export const GET_POKEMON = gql`
           name
         }
       }
-      species {
-        name
-      }
     }
   }
 `;

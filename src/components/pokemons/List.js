@@ -12,7 +12,7 @@ export default function List({ data, isPokeBag }) {
   };
 
   return (
-    <Container>
+    <Container data-testid="pokemon-list">
       {isPokeBag
         ? Object.keys(data || {})?.map((item, id) => (
             <Link

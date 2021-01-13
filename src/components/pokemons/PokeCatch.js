@@ -48,6 +48,7 @@ export default function PokeCatch({ name, image }) {
           }}
         >
           <PlainButton
+            data-testid="catch-btn"
             sx={{
               animation: `${bounce} 1.5s ease-in-out infinite`,
               transformOrigin: "center bottom",

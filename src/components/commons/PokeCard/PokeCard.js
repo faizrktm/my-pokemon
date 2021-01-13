@@ -35,11 +35,11 @@ export default function PokeCard({ image, name, subname, onClickDelete }) {
       >
         {name}
       </Text>
-      <Text sx={{ textTransform: "capitalize" }}>{subname}</Text>
+      {!!subname && <Text sx={{ textTransform: "capitalize" }}>{subname}</Text>}
 
       {typeof onClickDelete === "function" && (
         <Box sx={{ position: "absolute", bottom: "1rem", left: "1rem" }}>
-          <PlainButton onClick={handleDelete}>
+          <PlainButton onClick={handleDelete} data-testid="delete-pokemon-btn">
             <Image
               src={Delete}
               alt="Delete PlainButton"

@@ -19,7 +19,10 @@ export default function Detail({ moves }) {
       <Box sx={{ mb: 300 }}>
         <Text variant="label">Moves</Text>
       </Box>
-      <Box sx={{ flexDirection: "row", flexWrap: "wrap" }}>
+      <Box
+        sx={{ flexDirection: "row", flexWrap: "wrap" }}
+        data-testid="move-badges"
+      >
         {moves?.map(({ move }) => (
           <Badge title={move.name} key={move.name} />
         ))}

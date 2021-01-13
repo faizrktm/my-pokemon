@@ -19,7 +19,7 @@ export default function PokeAddForm({ pokemon, onSuccess }) {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} data-testid="add-pokemon-form">
       <Box sx={{ mt: 500 }}>
         <Text sx={{ mb: 300 }}>Now enter your {pokemon.name} nickname</Text>
         <TextInput name="name" onChange={handleChange} />

@@ -19,6 +19,7 @@ export default function App() {
       fetchMore({
         variables: {
           offset: data?.pokemons?.nextOffset,
+          limit: 10,
         },
       });
     } catch (_) {}
@@ -47,7 +48,7 @@ export default function App() {
           }}
         >
           <Text color="text-danger" sx={{ textAlign: "center" }}>
-            {error}
+            {error.message}
           </Text>
         </Box>
       )}

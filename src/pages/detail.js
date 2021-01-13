@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { useParams, useLocation } from "react-router-dom";
 
 import { GET_POKEMON } from "../query";
-import { Badge, Box, Image, Page } from "../components";
+import { Badge, Box, Image, Page, Text } from "../components";
 import Detail from "../components/pokemons/Detail";
 
 const PokeCatch = React.lazy(() => import("../components/pokemons/PokeCatch"));
@@ -11,15 +11,24 @@ const PokeCatch = React.lazy(() => import("../components/pokemons/PokeCatch"));
 export default function DetailPage() {
   let { id } = useParams();
   const { state } = useLocation();
-  const { data } = useQuery(GET_POKEMON, {
+  const { data, error } = useQuery(GET_POKEMON, {
     variables: {
       name: id,
     },
   });
+
   return (
     <Page title={id}>
       <Box sx={{ flex: 1 }}>
-        <Box sx={{ flexDirection: "row", flexWrap: "wrap" }}>
+        {!!error && (
+          <Text sx={{ color: "text-error", textAlign: "center" }}>
+            {error.message}
+          </Text>
+        )}
+        <Box
+          sx={{ flexDirection: "row", flexWrap: "wrap" }}
+          data-testid="type-badges"
+        >
           {data?.pokemon?.types?.map(({ type }) => (
             <Badge bg="ui-4" title={type.name} key={type.name} />
           ))}
