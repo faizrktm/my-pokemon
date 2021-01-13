@@ -1,30 +1,15 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import styled from "@emotion/styled";
-import { useHistory } from "react-router-dom";
 
-import { Box, Button, Text, TextInput } from "../commons";
-import { useMutatePokemon, CREATE } from "../MyPokemon";
+import { Box, Button, Text } from "../commons";
+
+const PokeAddForm = lazy(() => import("./PokeAddForm"));
+const PokeAddSuccess = lazy(() => import("./PokeAddSuccess"));
 
 export default function PokeModal({ result, handleClose, pokemon }) {
-  const [name, setName] = useState("");
   const [status, setStatus] = useState(null);
-  const [create, { loading, error }] = useMutatePokemon(CREATE);
-  let history = useHistory();
 
-  const onSubmit = async () => {
-    try {
-      await create(name, pokemon);
-      setStatus("success");
-    } catch (_) {}
-  };
-
-  const handleChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const gotoPokebag = () => {
-    history.push("/pokebag");
-  };
+  const message = result ? "Gotcha!" : "Sorry, lady luck not in your side!";
 
   return (
     <Container>
@@ -42,56 +27,24 @@ export default function PokeModal({ result, handleClose, pokemon }) {
           pb: 600,
         }}
       >
-        {status === "success" ? (
-          <>
-            <Text variant="heading">
-              Your Pokemon is safe and sound in your pokebag.
-            </Text>
-            <Box sx={{ mt: 500, flexDirection: "row" }}>
-              <Button
-                loading={loading}
-                label="Close"
-                onClick={handleClose}
-                sx={{ flex: 1 }}
-                variant="secondary"
-              />
-              <Box sx={{ width: "1rem" }} />
-              <Button
-                loading={loading}
-                label="See PokeBag"
-                onClick={gotoPokebag}
-                sx={{ flex: 1 }}
-              />
-            </Box>
-          </>
-        ) : (
-          <>
-            <Text variant="heading">
-              {result ? "Gotcha!" : "Sorry, lady luck not in your side!"}
-            </Text>
-            {result && (
-              <Box sx={{ mt: 500 }}>
-                <Text sx={{ mb: 300 }}>
-                  Now enter your {pokemon.name} nickname
-                </Text>
-                <TextInput name="name" onChange={handleChange} />
-                {error && (
-                  <Text sx={{ mt: 300, color: "text-error" }}>{error}</Text>
-                )}
-              </Box>
-            )}
-            {!result ? (
-              <Button label="Close" onClick={handleClose} sx={{ mt: 500 }} />
-            ) : (
-              <Button
-                loading={loading}
-                label="Submit"
-                onClick={onSubmit}
-                sx={{ mt: 500 }}
-              />
-            )}
-          </>
-        )}
+        <Suspense fallback={<div>Loading...</div>}>
+          {status === "success" ? (
+            <PokeAddSuccess handleClose={handleClose} />
+          ) : (
+            <>
+              <Text variant="heading">{message}</Text>
+              {result && (
+                <PokeAddForm
+                  pokemon={pokemon}
+                  onSuccess={() => setStatus("success")}
+                />
+              )}
+              {!result ? (
+                <Button label="Close" onClick={handleClose} sx={{ mt: 500 }} />
+              ) : null}
+            </>
+          )}
+        </Suspense>
       </Box>
     </Container>
   );

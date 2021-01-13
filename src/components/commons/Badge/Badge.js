@@ -8,6 +8,7 @@ export default function Badge({
 }) {
   return (
     <Box
+      as="span"
       sx={{
         mr: 500,
         mb: 500,

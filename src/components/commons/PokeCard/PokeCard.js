@@ -24,7 +24,15 @@ export default function PokeCard({ image, name, subname, onClickDelete }) {
           right: 0,
         }}
       />
-      <Text variant="label" sx={{ textTransform: "capitalize" }}>
+      <Text
+        variant="label"
+        sx={{
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          textTransform: "capitalize",
+        }}
+      >
         {name}
       </Text>
       <Text sx={{ textTransform: "capitalize" }}>{subname}</Text>

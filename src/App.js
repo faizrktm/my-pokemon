@@ -8,17 +8,19 @@ const Pokebag = React.lazy(() => import("./pages/pokebag"));
 export default function App() {
   return (
     <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/pokebag">
-          <Pokebag />
-        </Route>
-        <Route path="/:id">
-          <Detail />
-        </Route>
-      </Switch>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/pokebag">
+            <Pokebag />
+          </Route>
+          <Route path="/:id">
+            <Detail />
+          </Route>
+        </Switch>
+      </React.Suspense>
     </Router>
   );
 }

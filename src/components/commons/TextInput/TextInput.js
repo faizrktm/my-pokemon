@@ -3,7 +3,7 @@
 import { jsx, useTheme } from "@emotion/react";
 import { spacing, color } from "../../../utils/theme";
 
-export default function TextInput({ name, required, onChange }) {
+export default function TextInput({ name, required, onChange, ...rest }) {
   const theme = useTheme();
   return (
     <input
@@ -23,6 +23,7 @@ export default function TextInput({ name, required, onChange }) {
         },
       }}
       required={required}
+      {...rest}
     />
   );
 }

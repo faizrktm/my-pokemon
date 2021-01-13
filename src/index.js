@@ -28,9 +28,7 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
       <PokemonProvider>
         <ApolloProvider client={client}>
-          <React.Suspense fallback={<div>Loading...</div>}>
-            <App />
-          </React.Suspense>
+          <App />
         </ApolloProvider>
       </PokemonProvider>
     </ThemeProvider>
