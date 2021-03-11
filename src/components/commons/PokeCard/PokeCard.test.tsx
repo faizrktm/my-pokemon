@@ -1,4 +1,3 @@
-import React from "react";
 import { render } from "../../../utils/test-utils";
 import PokeCard from "./PokeCard";
 
@@ -8,8 +7,7 @@ describe("PokeCard", () => {
       <PokeCard image="https://via.placeholder.com/150" name="bulbasaur" />
     );
     expect(getByText("bulbasaur")).toBeInTheDocument();
-    expect(getByAltText("bulbasaur").src).toContain(
-      "https://via.placeholder.com/150"
-    );
+    const image = getByAltText("bulbasaur") as HTMLImageElement;
+    expect(image.src).toContain("https://via.placeholder.com/150");
   });
 });

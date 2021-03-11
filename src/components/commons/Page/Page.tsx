@@ -3,8 +3,9 @@ import { Link, useRouteMatch } from "react-router-dom";
 
 import { Box } from "../Box";
 import { Text } from "../Text";
+import { PageProps } from "./types";
 
-const Page = ({ children, title }) => {
+const Page = ({ children, title }: PageProps) => {
   let match = useRouteMatch("/pokebag");
 
   return (
