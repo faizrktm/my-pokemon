@@ -1,11 +1,12 @@
 import { Box } from "../Box";
 import { Text } from "../Text";
+import { BadgeProps } from "./types";
 
 export default function Badge({
   title,
   bg = "interactive-1",
   color = "text-4",
-}) {
+}: BadgeProps) {
   return (
     <Box
       as="span"

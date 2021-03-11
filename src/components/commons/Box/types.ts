@@ -8,4 +8,5 @@ interface SX extends Omit<StyledProps, "boxShadow"> {
 export interface BoxProps {
   children: React.ReactNode;
   sx: SX;
+  as?: keyof JSX.IntrinsicElements;
 }
