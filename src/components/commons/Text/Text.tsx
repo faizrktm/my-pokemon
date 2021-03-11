@@ -3,20 +3,11 @@
 import { jsx, useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import { spacing } from "../../../utils/theme";
+import { TextProps } from "./types";
 
-export default function Text({ variant, children, sx, ...rest }) {
+export default function Text({ variant, children, sx, ...rest }: TextProps) {
   const { fontVariant, breakpoint, color: colors, ...theme } = useTheme();
-  const {
-    m,
-    mt,
-    mb,
-    mr,
-    ml,
-    color = "text-1",
-    textTransform,
-    weight = 400,
-    ...restOfSx
-  } = sx;
+  const { m, mt, mb, mr, ml, color = "text-1", ...restOfSx } = sx;
   return (
     <TextComponent
       css={{
@@ -25,13 +16,11 @@ export default function Text({ variant, children, sx, ...rest }) {
           ...fontVariant[variant].tablet,
         },
         color: colors[color],
-        fontWeight: weight,
-        textTransform,
-        margin: spacing(m)({ theme }),
-        marginTop: spacing(mt)({ theme }),
-        marginBottom: spacing(mb)({ theme }),
-        marginLeft: spacing(ml)({ theme }),
-        marginRight: spacing(mr)({ theme }),
+        ...(m && { margin: spacing(m)({ theme }) }),
+        ...(mt && { marginTop: spacing(mt)({ theme }) }),
+        ...(mb && { marginBottom: spacing(mb)({ theme }) }),
+        ...(ml && { marginLeft: spacing(ml)({ theme }) }),
+        ...(mr && { marginRight: spacing(mr)({ theme }) }),
         ...restOfSx,
       }}
       {...rest}

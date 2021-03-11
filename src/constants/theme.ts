@@ -78,3 +78,84 @@ const theme = {
 };
 
 export default theme;
+export interface ThemeProps {
+  color: {
+    background: string;
+    "ui-1": string;
+    "ui-2": string;
+    "ui-3": string;
+    "ui-4": string;
+    "ui-5": string;
+    "text-1": string;
+    "text-2": string;
+    "text-3": string;
+    "text-4": string;
+    "text-5": string;
+    "text-error": string;
+    "interactive-1": string;
+    "interactive-1-hover": string;
+    "interactive-1-active": string;
+  };
+  shadow: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+  };
+  spacing: {
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+  };
+  breakpoint: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  fontVariant: {
+    label: {
+      mobile: {
+        fontSize: string;
+        lineHeight: string;
+        fontFamily: string;
+      };
+      tablet: {
+        fontSize: string;
+        lineHeight: string;
+        fontFamily: string;
+      };
+    };
+    heading: {
+      mobile: {
+        fontSize: string;
+        lineHeight: string;
+        fontFamily: string;
+      };
+      tablet: {
+        fontSize: string;
+        lineHeight: string;
+        fontFamily: string;
+      };
+    };
+    default: {
+      mobile: {
+        fontSize: string;
+        lineHeight: string;
+        fontFamily: string;
+      };
+      tablet: {
+        fontSize: string;
+        lineHeight: string;
+        fontFamily: string;
+      };
+    };
+  };
+}
+export type ThemeData = {
+  theme: Partial<ThemeProps>;
+};

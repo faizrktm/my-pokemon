@@ -1,4 +1,6 @@
-export default function offsetLimitPagination() {
+import { FieldPolicy } from "@apollo/client";
+
+export default function offsetLimitPagination(): FieldPolicy {
   return {
     keyArgs: false,
     merge(existing, incoming, params) {
@@ -16,7 +18,7 @@ export default function offsetLimitPagination() {
       return {
         ...incoming,
         results: merged,
-      };
+      } as const;
     },
   };
 }

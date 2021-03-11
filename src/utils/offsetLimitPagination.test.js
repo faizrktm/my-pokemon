@@ -2,11 +2,12 @@ import offsetLimitPagination from "./offsetLimitPagination";
 
 const existing = { results: [1, 2] };
 const incoming = { results: [3, 4] };
+const params = { args: { offset: 2 } };
 
 describe("offsetLimitPagination", () => {
   it("Should return correct data after merge", () => {
     const { merge } = offsetLimitPagination();
-    const result = merge(existing, incoming, { args: { offset: 2 } });
+    const result = merge(existing, incoming, params);
 
     expect(result).toEqual({ results: [1, 2, 3, 4] });
   });

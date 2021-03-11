@@ -2,6 +2,7 @@
 /** @jsx jsx */
 import { jsx, useTheme, css } from "@emotion/react";
 import { color, spacing } from "../../../utils/theme";
+import { ButtonProps } from "./types";
 
 export default function Button({
   variant,
@@ -10,8 +11,9 @@ export default function Button({
   disabled,
   onClick,
   sx,
+  type,
   ...rest
-}) {
+}: ButtonProps) {
   const theme = useTheme();
 
   const { m, mt, mb, mr, ml, ...restOfSx } = sx;
@@ -45,13 +47,13 @@ export default function Button({
 
   return (
     <button
-      onClick={disabled || loading ? null : onClick}
+      onClick={disabled || loading ? () => {} : onClick}
       css={{
-        margin: spacing(m)({ theme }),
-        marginTop: spacing(mt)({ theme }),
-        marginBottom: spacing(mb)({ theme }),
-        marginLeft: spacing(ml)({ theme }),
-        marginRight: spacing(mr)({ theme }),
+        ...(m && { margin: spacing(m)({ theme }) }),
+        ...(mt && { marginTop: spacing(mt)({ theme }) }),
+        ...(mb && { marginBottom: spacing(mb)({ theme }) }),
+        ...(ml && { marginLeft: spacing(ml)({ theme }) }),
+        ...(mr && { marginRight: spacing(mr)({ theme }) }),
         fontFamily: "Rubik, sans-serif",
         padding: spacing(500)({ theme }),
         borderRadius: "8px",
@@ -59,6 +61,7 @@ export default function Button({
         ...variants[variant],
         ...restOfSx,
       }}
+      type={type}
       {...rest}
     >
       {label}
@@ -71,4 +74,6 @@ Button.defaultProps = {
   onClick: () => {},
   sx: {},
   variant: "primary",
+  loading: false,
+  type: "button",
 };

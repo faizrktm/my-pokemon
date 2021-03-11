@@ -2,15 +2,16 @@
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
 import { spacing } from "../../../utils/theme";
+import { PlainButtonProps } from "./types";
 
-export default function Button({
+export default function PlainButton({
   children,
   type,
   disabled,
   onClick,
   sx,
   ...rest
-}) {
+}: PlainButtonProps) {
   const theme = useTheme();
 
   const { m, mt, mb, mr, ml, ...restOfSx } = sx;
@@ -18,18 +19,18 @@ export default function Button({
   return (
     <button
       type={type}
-      onClick={disabled ? null : onClick}
+      onClick={disabled ? () => {} : onClick}
       css={{
         display: "flex",
         padding: 0,
         border: "none",
         cursor: "pointer",
         background: "transparent",
-        margin: spacing(m)({ theme }),
-        marginTop: spacing(mt)({ theme }),
-        marginBottom: spacing(mb)({ theme }),
-        marginLeft: spacing(ml)({ theme }),
-        marginRight: spacing(mr)({ theme }),
+        ...(m && { margin: spacing(m)({ theme }) }),
+        ...(mt && { marginTop: spacing(mt)({ theme }) }),
+        ...(mb && { marginBottom: spacing(mb)({ theme }) }),
+        ...(ml && { marginLeft: spacing(ml)({ theme }) }),
+        ...(mr && { marginRight: spacing(mr)({ theme }) }),
         ...restOfSx,
       }}
       {...rest}
@@ -39,7 +40,7 @@ export default function Button({
   );
 }
 
-Button.defaultProps = {
+PlainButton.defaultProps = {
   disabled: false,
   onClick: () => {},
   sx: {},

@@ -38,8 +38,13 @@ export function PokemonProvider({ children }) {
     }
   };
 
+  const dataAsArray = Object.keys(data || {})?.map((item) => ({
+    ...data[item],
+    nickname: item,
+  }));
+
   return (
-    <PokemonContext.Provider value={{ data, create, remove }}>
+    <PokemonContext.Provider value={{ data, dataAsArray, create, remove }}>
       {children}
     </PokemonContext.Provider>
   );

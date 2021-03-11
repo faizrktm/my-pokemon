@@ -23,7 +23,11 @@ const Page = ({ children, title }) => {
       </Box>
       {title ? (
         <Box data-testid="title" sx={{ mb: 500 }}>
-          <Text as="h1" variant="heading" sx={{ textTransform: "capitalize" }}>
+          <Text
+            as="h1"
+            variant="heading"
+            sx={{ fontWeight: 400, textTransform: "capitalize" }}
+          >
             {title}
           </Text>
         </Box>

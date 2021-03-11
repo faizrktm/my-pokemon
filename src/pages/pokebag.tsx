@@ -3,10 +3,10 @@ import { usePokemon } from "../components/MyPokemon";
 import List from "../components/pokemons/List";
 
 export default function PokebagPage() {
-  const { data } = usePokemon();
+  const { dataAsArray } = usePokemon();
   return (
     <Page title="Pokebag">
-      <List data={data} isPokeBag />
+      <List data={dataAsArray} isPokeBag />
     </Page>
   );
 }

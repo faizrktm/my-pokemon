@@ -33,3 +33,5 @@ export const GET_POKEMON = gql`
     }
   }
 `;
+
+export * from "./types";

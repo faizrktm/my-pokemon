@@ -1,12 +1,15 @@
 import * as React from "react";
 import { useQuery } from "@apollo/client";
 
-import { GET_POKEMONS } from "../query";
+import { GET_POKEMONS, PokemonData, PokemonVars } from "../query";
 import { Button, Page, Text, Box } from "../components";
 const List = React.lazy(() => import("../components/pokemons/List"));
 
 export default function App() {
-  const { data, fetchMore, loading, error } = useQuery(GET_POKEMONS, {
+  const { data, fetchMore, loading, error } = useQuery<
+    PokemonData,
+    PokemonVars
+  >(GET_POKEMONS, {
     notifyOnNetworkStatusChange: true,
     variables: {
       offset: 0,
@@ -25,7 +28,7 @@ export default function App() {
     } catch (_) {}
   };
 
-  const hasMore = data?.pokemons?.nextOffset > 0;
+  const hasMore = (data?.pokemons?.nextOffset || 0) > 0;
 
   return (
     <Page title="Pokedex">
@@ -47,7 +50,7 @@ export default function App() {
             mt: 700,
           }}
         >
-          <Text color="text-danger" sx={{ textAlign: "center" }}>
+          <Text sx={{ textAlign: "center", color: "text-error" }}>
             {error.message}
           </Text>
         </Box>

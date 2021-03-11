@@ -1,31 +1,38 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { Pokemon } from "../../query";
 
 import { breakpoint, spacing } from "../../utils/theme";
 import { PokeCard } from "../commons/PokeCard";
 import { useMutatePokemon, REMOVE } from "../MyPokemon";
 
-export default function List({ data, isPokeBag }) {
+interface ListProps {
+  data: Pokemon[] | undefined;
+  isPokeBag?: boolean;
+}
+
+export default function List({ data, isPokeBag }: ListProps) {
   const [remove] = useMutatePokemon(REMOVE);
-  const handleDelete = (name) => {
-    remove(name).catch((_) => {});
+
+  const handleDelete = (name: string) => {
+    remove(name).catch(() => {});
   };
 
   return (
     <Container data-testid="pokemon-list">
       {isPokeBag
-        ? Object.keys(data || {})?.map((item, id) => (
+        ? data?.map(({ id, image, name, nickname }) => (
             <Link
               key={id}
               to={{
-                pathname: `/${data[item].name}`,
-                state: { image: data[item].image },
+                pathname: `/${name}`,
+                state: { image: image },
               }}
             >
               <PokeCard
-                image={data[item].image}
-                subname={data[item].name}
-                name={item}
+                image={image}
+                subname={name}
+                name={nickname || ""}
                 onClickDelete={handleDelete}
               />
             </Link>

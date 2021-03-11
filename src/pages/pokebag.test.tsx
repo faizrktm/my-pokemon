@@ -5,7 +5,7 @@ import { render, waitFor, screen, cleanup } from "../utils/test-utils";
 import Pokebag from "./pokebag";
 
 const dummyPokemon =
-  '{"warta":{"name":"wartortle","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"}}';
+  '{"warta":{"id": 99,"name":"wartortle","image":"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"}}';
 
 afterEach(cleanup);
 

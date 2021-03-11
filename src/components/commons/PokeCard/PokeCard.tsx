@@ -4,11 +4,19 @@ import { Text } from "../Text";
 import { Image } from "../Image";
 import { PlainButton } from "../Button";
 import Delete from "../../../assets/delete.svg";
+import { PokeCardProps } from "./types";
 
-export default function PokeCard({ image, name, subname, onClickDelete }) {
-  const handleDelete = (e) => {
+export default function PokeCard({
+  image,
+  name,
+  subname,
+  onClickDelete,
+}: PokeCardProps) {
+  const handleDelete = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    onClickDelete(name);
+    if (!!onClickDelete) {
+      onClickDelete(name);
+    }
   };
 
   return (
@@ -37,7 +45,7 @@ export default function PokeCard({ image, name, subname, onClickDelete }) {
       </Text>
       {!!subname && <Text sx={{ textTransform: "capitalize" }}>{subname}</Text>}
 
-      {typeof onClickDelete === "function" && (
+      {!!onClickDelete && (
         <Box sx={{ position: "absolute", bottom: "1rem", left: "1rem" }}>
           <PlainButton onClick={handleDelete} data-testid="delete-pokemon-btn">
             <Image
