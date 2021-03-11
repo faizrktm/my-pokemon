@@ -4,14 +4,15 @@ import { jsx, useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 import { shadow } from "../../../utils/theme";
+import { CardProps } from "./types";
 
-export default function Card({ children, sx }) {
-  const { backgroundColor, ...restOfSx } = sx;
-  const theme = useTheme();
+export default function Card({ children, sx }: CardProps) {
+  const { backgroundColor = "ui-1", ...restOfSx } = sx;
+  const { color } = useTheme();
   return (
     <StyledCard
       css={{
-        backgroundColor: theme.color[backgroundColor],
+        backgroundColor: color[backgroundColor],
         ...restOfSx,
       }}
     >
