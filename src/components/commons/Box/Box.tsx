@@ -20,7 +20,7 @@ export default function Box({ children, sx, ...rest }: BoxProps) {
     display = "flex",
     flexDirection = "column",
     boxShadow,
-    backgroundColor = "ui-1",
+    backgroundColor = "transparent",
     ...restOfSx
   } = sx;
   const theme = useTheme();
