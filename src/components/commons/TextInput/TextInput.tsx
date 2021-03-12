@@ -2,8 +2,9 @@
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
 import { spacing, color } from "../../../utils/theme";
+import { TextInputProps } from "./types";
 
-export default function TextInput({ name, required, onChange, ...rest }) {
+export default function TextInput({ name, required, onChange, ...rest }: TextInputProps) {
   const theme = useTheme();
   return (
     <input
