@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Box, Button, Text, TextInput } from "../commons";
 import { CREATE, useMutatePokemon } from "../MyPokemon";
+import { PokeAddProps } from "./types";
 
-export default function PokeAddForm({ pokemon, onSuccess }) {
+export default function PokeAddForm({ pokemon, onSuccess }: PokeAddProps) {
   const [name, setName] = useState("");
   const [create, { loading, error }] = useMutatePokemon(CREATE);
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.SyntheticEvent) => {
     try {
       e.preventDefault();
       const result = await create(name, pokemon);
@@ -14,7 +15,7 @@ export default function PokeAddForm({ pokemon, onSuccess }) {
     } catch (_) {}
   };
 
-  const handleChange = (e) => {
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setName(e.target.value);
   };
 

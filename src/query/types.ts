@@ -1,19 +1,19 @@
-interface Moves {
+export interface Moves {
   move: {
     name: string;
   };
 }
-interface Types {
+export interface Types {
   type: {
     name: string;
   };
 }
 
 export interface Pokemon {
-  id: number;
+  id?: number;
   name: string;
-  moves?: Moves;
-  types?: Types;
+  moves?: Moves[];
+  types?: Types[];
   image?: string;
   nickname?: string;
 }
@@ -29,7 +29,12 @@ export interface PokemonData {
   pokemons: PokemonResult;
 }
 
+export interface PokemonDetail {
+  pokemon: Pokemon;
+}
+
 export interface PokemonVars {
-  limit: number;
-  offset: number;
+  limit?: number;
+  offset?: number;
+  name?: string;
 }

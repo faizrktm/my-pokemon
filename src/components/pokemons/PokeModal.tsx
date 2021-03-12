@@ -2,12 +2,13 @@ import { lazy, Suspense, useState } from "react";
 import styled from "@emotion/styled";
 
 import { Box, Button, Text } from "../commons";
+import { PokeModalProps } from "./types";
 
 const PokeAddForm = lazy(() => import("./PokeAddForm"));
 const PokeAddSuccess = lazy(() => import("./PokeAddSuccess"));
 
-export default function PokeModal({ result, handleClose, pokemon }) {
-  const [status, setStatus] = useState(null);
+export default function PokeModal({ result, handleClose, pokemon }: PokeModalProps) {
+  const [status, setStatus] = useState<"success" | null>(null);
 
   const message = result ? "Gotcha!" : "Sorry, lady luck not in your side!";
 

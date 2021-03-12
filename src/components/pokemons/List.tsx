@@ -1,15 +1,10 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
-import { Pokemon } from "../../query";
 
+import { ListProps } from './types';
 import { breakpoint, spacing } from "../../utils/theme";
 import { PokeCard } from "../commons/PokeCard";
 import { useMutatePokemon, REMOVE } from "../MyPokemon";
-
-interface ListProps {
-  data: Pokemon[] | undefined;
-  isPokeBag?: boolean;
-}
 
 export default function List({ data, isPokeBag }: ListProps) {
   const [remove] = useMutatePokemon(REMOVE);

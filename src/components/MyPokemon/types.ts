@@ -30,7 +30,7 @@ export interface PokemonProviderProps {
 
 export type RemovePokemonType = (nickname: string) => void;
 
-export type CreatePokemonType = (nickname: string, pokemon: Pokemon) => void;
+export type CreatePokemonType = (nickname: string, pokemon: Pokemon) => boolean;
 
 export interface PokemonProviderContextState {
   data: Record<string, Pokemon>;

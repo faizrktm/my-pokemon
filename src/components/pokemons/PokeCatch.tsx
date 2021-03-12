@@ -4,6 +4,7 @@ import { keyframes } from "@emotion/react";
 import { Box, Image, PlainButton, Portal } from "../commons";
 import PokeBall from "../../assets/pokeball.svg";
 import PokeModal from "./PokeModal";
+import { PokeCatchProps } from "./types";
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -23,8 +24,8 @@ const bounce = keyframes`
   }
 `;
 
-export default function PokeCatch({ name, image }) {
-  const [result, setResult] = React.useState(null);
+export default function PokeCatch({ name, image }: PokeCatchProps) {
+  const [result, setResult] = React.useState<boolean | null>(null);
 
   const handleGatcha = () => {
     setResult(Math.random() < 0.5);
@@ -35,7 +36,9 @@ export default function PokeCatch({ name, image }) {
       {result !== null && (
         <PokeModal
           result={result}
-          handleClose={() => setResult(null)}
+          handleClose={() => {
+            setResult(null);
+          }}
           pokemon={{ name, image }}
         />
       )}

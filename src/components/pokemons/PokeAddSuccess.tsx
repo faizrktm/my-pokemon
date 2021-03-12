@@ -1,8 +1,9 @@
 import { useHistory } from "react-router-dom";
 
 import { Box, Button, Text } from "../commons";
+import { PokeAddSuccessProps } from "./types";
 
-export default function PokeAddSuccess({ handleClose }) {
+export default function PokeAddSuccess({ handleClose }: PokeAddSuccessProps) {
   let history = useHistory();
   const gotoPokebag = () => {
     history.push("/pokebag");

@@ -2,16 +2,27 @@ import * as React from "react";
 import { useQuery } from "@apollo/client";
 import { useParams, useLocation } from "react-router-dom";
 
-import { GET_POKEMON } from "../query";
+import { GET_POKEMON, PokemonDetail, PokemonVars } from "../query";
 import { Badge, Box, Image, Page, Text } from "../components";
 import Detail from "../components/pokemons/Detail";
 
 const PokeCatch = React.lazy(() => import("../components/pokemons/PokeCatch"));
 
+type RouterParams = {
+  id: string;
+}
+
+type LocationState = {
+  image?: string;
+}
+
 export default function DetailPage() {
-  let { id } = useParams();
-  const { state } = useLocation();
-  const { data, error } = useQuery(GET_POKEMON, {
+  let { id } = useParams<RouterParams>();
+  const { state } = useLocation<LocationState>();
+  const { data, error } = useQuery<
+    PokemonDetail,
+    PokemonVars
+  >(GET_POKEMON, {
     variables: {
       name: id,
     },

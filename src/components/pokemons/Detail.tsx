@@ -1,6 +1,7 @@
 import { Badge, Box, Text } from "../commons";
+import { DetailProps } from './types';
 
-export default function Detail({ moves }) {
+export default function Detail({ moves }: DetailProps) {
   return (
     <Box
       sx={{
