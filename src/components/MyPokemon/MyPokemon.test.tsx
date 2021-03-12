@@ -41,13 +41,13 @@ const Mutator = () => {
         <div>not found</div>
       )}
       <button
-        onClick={() => create("ivysaur", { name: "ivysaur" }).catch(() => {})}
+        onClick={() => create("ivysaur", { id: 10, name: "ivysaur" }).catch(() => {})}
       >
         Add Ivysaur
       </button>
       <button
         onClick={() =>
-          create("bulbasaur", { name: "bulbasaur" }).catch(() => {})
+          create("bulbasaur", { id: 11, name: "bulbasaur" }).catch(() => {})
         }
       >
         Add Bulbasaur
@@ -96,6 +96,7 @@ describe("MyPokemon", () => {
       "my-pokemon",
       JSON.stringify({
         ivysaur: {
+          id: 10,
           name: "ivysaur",
         },
       })

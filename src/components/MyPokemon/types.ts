@@ -23,3 +23,18 @@ export interface MutateState {
   loading: boolean;
   error: string | null;
 }
+
+export interface PokemonProviderProps {
+  children: React.ReactNode;
+}
+
+export type RemovePokemonType = (nickname: string) => void;
+
+export type CreatePokemonType = (nickname: string, pokemon: Pokemon) => void;
+
+export interface PokemonProviderContextState {
+  data: Record<string, Pokemon>;
+  dataAsArray: Pokemon[];
+  create: CreatePokemonType;
+  remove: RemovePokemonType;
+}

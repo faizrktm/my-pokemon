@@ -1,16 +1,17 @@
 import * as React from "react";
+import { PokemonProviderContextState, PokemonProviderProps, RemovePokemonType, CreatePokemonType } from "./types";
 
-const PokemonContext = React.createContext();
+const PokemonContext = React.createContext({} as PokemonProviderContextState);
 
 const storageKey = "my-pokemon";
 
-export function PokemonProvider({ children }) {
+export function PokemonProvider({ children }: PokemonProviderProps) {
   const [data, setData] = React.useState(() => {
     const pokemons = localStorage.getItem(storageKey);
     return pokemons !== null ? JSON.parse(pokemons) : null;
   });
 
-  const create = (nickname, pokemon) => {
+  const create: CreatePokemonType = (nickname, pokemon) => {
     if (!nickname || !pokemon) {
       throw new Error("Nickname required");
     }
@@ -23,7 +24,7 @@ export function PokemonProvider({ children }) {
     return true;
   };
 
-  const remove = (nickname) => {
+  const remove: RemovePokemonType = (nickname) => {
     const toBeSaved = { ...data };
     if (!nickname || !toBeSaved[nickname]) {
       throw new Error("Pokemon not found");
