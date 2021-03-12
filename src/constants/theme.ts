@@ -15,6 +15,7 @@ const theme = {
     "interactive-1": "#0f62fe",
     "interactive-1-hover": "#0353e9",
     "interactive-1-active": "#002d9c",
+    transparent: "transparent",
   },
   shadow: {
     100: "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
@@ -95,6 +96,7 @@ export interface ThemeProps {
     "interactive-1": string;
     "interactive-1-hover": string;
     "interactive-1-active": string;
+    transparent: string;
   };
   shadow: {
     100: string;
