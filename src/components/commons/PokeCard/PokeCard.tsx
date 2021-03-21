@@ -2,7 +2,7 @@ import { Box } from "../Box";
 import { Card } from "../Card";
 import { Text } from "../Text";
 import { Image } from "../Image";
-import { PlainButton } from "../Button";
+import PlainButton from "../Button/PlainButton";
 import Delete from "../../../assets/delete.svg";
 import { PokeCardProps } from "./types";
 
@@ -19,11 +19,15 @@ export default function PokeCard({
     }
   };
 
+  const imgAlt = subname
+    ? `Detail Page Pokemon ${name} with name ${subname}`
+    : `Detail Page Pokemon ${name}`;
+
   return (
     <Card sx={{ backgroundColor: "ui-1" }}>
       <Image
         src={image}
-        alt={name}
+        alt={imgAlt}
         sx={{
           width: "100px",
           height: "100px",
@@ -50,7 +54,7 @@ export default function PokeCard({
           <PlainButton onClick={handleDelete} data-testid="delete-pokemon-btn">
             <Image
               src={Delete}
-              alt="Delete PlainButton"
+              alt={`Delete ${subname} with name ${name}`}
               sx={{ width: "20px", height: "20px" }}
             />
           </PlainButton>

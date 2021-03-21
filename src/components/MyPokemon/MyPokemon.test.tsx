@@ -4,9 +4,8 @@ import { waitFor, render, cleanup } from "@testing-library/react";
 
 import {
   PokemonProvider,
-  useMutatePokemon,
-  CREATE,
-  REMOVE,
+  useCreatePokemon,
+  useDeletePokemon,
   usePokemon,
 } from "./index";
 
@@ -25,8 +24,8 @@ beforeEach(() => {
 
 const Mutator = () => {
   const { data } = usePokemon();
-  const [create, { error: errCreate }] = useMutatePokemon(CREATE);
-  const [remove, { error: errRemove }] = useMutatePokemon(REMOVE);
+  const [create, { error: errCreate }] = useCreatePokemon();
+  const [remove, { error: errRemove }] = useDeletePokemon();
   return (
     <>
       {errCreate && <span data-testid="errMessage">{errCreate}</span>}
@@ -41,7 +40,9 @@ const Mutator = () => {
         <div>not found</div>
       )}
       <button
-        onClick={() => create("ivysaur", { id: 10, name: "ivysaur" }).catch(() => {})}
+        onClick={() =>
+          create("ivysaur", { id: 10, name: "ivysaur" }).catch(() => {})
+        }
       >
         Add Ivysaur
       </button>

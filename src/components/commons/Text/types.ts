@@ -6,4 +6,5 @@ export interface TextProps {
   children: React.ReactNode;
   sx: StyledProps;
   as?: keyof JSX.IntrinsicElements;
+  htmlFor?: string;
 }

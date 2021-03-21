@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 
-import { ListProps } from './types';
+import { ListProps } from "./types";
 import { breakpoint, spacing } from "../../utils/theme";
 import { PokeCard } from "../commons/PokeCard";
-import { useMutatePokemon, REMOVE } from "../MyPokemon";
+import { useDeletePokemon } from "../MyPokemon";
 
 export default function List({ data, isPokeBag }: ListProps) {
-  const [remove] = useMutatePokemon(REMOVE);
+  const [remove] = useDeletePokemon();
 
   const handleDelete = (name: string) => {
     remove(name).catch(() => {});

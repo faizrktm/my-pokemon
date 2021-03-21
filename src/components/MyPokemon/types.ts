@@ -14,10 +14,9 @@ export type HandleCreate = (name: string, pokemon: Pokemon) => Promise<any>;
 
 export type HandleRemove = (name: string) => Promise<any>;
 
-export type UseMutatePokemon<T extends CreateType | RemoveType> = [
-  T extends CreateType ? HandleCreate : HandleRemove,
-  MutateState
-];
+export type UseCreatePokemon = [HandleCreate, MutateState];
+
+export type UseDeletePokemon = [HandleRemove, MutateState];
 
 export interface MutateState {
   loading: boolean;

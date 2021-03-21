@@ -4,10 +4,18 @@ import styled from "@emotion/styled";
 import { Box, Button, Text } from "../commons";
 import { PokeModalProps } from "./types";
 
-const PokeAddForm = lazy(() => import("./PokeAddForm"));
-const PokeAddSuccess = lazy(() => import("./PokeAddSuccess"));
+const PokeAddForm = lazy(
+  () => import(/* webpackChunkName: "poke-add-form" */ "./PokeAddForm")
+);
+const PokeAddSuccess = lazy(
+  () => import(/* webpackChunkName: "poke-add-success" */ "./PokeAddSuccess")
+);
 
-export default function PokeModal({ result, handleClose, pokemon }: PokeModalProps) {
+export default function PokeModal({
+  result,
+  handleClose,
+  pokemon,
+}: PokeModalProps) {
   const [status, setStatus] = useState<"success" | null>(null);
 
   const message = result ? "Gotcha!" : "Sorry, lady luck not in your side!";
@@ -33,7 +41,9 @@ export default function PokeModal({ result, handleClose, pokemon }: PokeModalPro
             <PokeAddSuccess handleClose={handleClose} />
           ) : (
             <>
-              <Text variant="heading">{message}</Text>
+              <Text as="h1" variant="heading" sx={{ fontWeight: 400 }}>
+                {message}
+              </Text>
               {result && (
                 <PokeAddForm
                   pokemon={pokemon}

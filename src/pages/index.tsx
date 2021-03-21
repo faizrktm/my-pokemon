@@ -3,7 +3,10 @@ import { useQuery } from "@apollo/client";
 
 import { GET_POKEMONS, PokemonData, PokemonVars } from "../query";
 import { Button, Page, Text, Box } from "../components";
-const List = React.lazy(() => import("../components/pokemons/List"));
+const List = React.lazy(
+  () =>
+    import(/* webpackChunkName: "poke-list" */ "../components/pokemons/List")
+);
 
 export default function App() {
   const { data, fetchMore, loading, error } = useQuery<

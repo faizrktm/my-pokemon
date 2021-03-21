@@ -1,5 +1,10 @@
 import * as React from "react";
-import { PokemonProviderContextState, PokemonProviderProps, RemovePokemonType, CreatePokemonType } from "./types";
+import {
+  PokemonProviderContextState,
+  PokemonProviderProps,
+  RemovePokemonType,
+  CreatePokemonType,
+} from "./types";
 
 const PokemonContext = React.createContext({} as PokemonProviderContextState);
 
@@ -39,7 +44,7 @@ export function PokemonProvider({ children }: PokemonProviderProps) {
     }
   };
 
-  const dataAsArray = Object.keys(data || {})?.map((item) => ({
+  const dataAsArray = Object.keys(data || {}).map((item) => ({
     ...data[item],
     nickname: item,
   }));
