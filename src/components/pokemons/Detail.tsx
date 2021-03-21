@@ -1,5 +1,5 @@
 import { Badge, Box, Text } from "../commons";
-import { DetailProps } from './types';
+import { DetailProps } from "./types";
 
 export default function Detail({ moves }: DetailProps) {
   return (
@@ -18,7 +18,9 @@ export default function Detail({ moves }: DetailProps) {
       }}
     >
       <Box sx={{ mb: 300 }}>
-        <Text variant="label">Moves</Text>
+        <Text as="h2" variant="heading" sx={{ fontWeight: 400 }}>
+          Moves
+        </Text>
       </Box>
       <Box
         sx={{ flexDirection: "row", flexWrap: "wrap" }}

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Box, Button, Text, TextInput } from "../commons";
-import { CREATE, useMutatePokemon } from "../MyPokemon";
+import { useCreatePokemon } from "../MyPokemon";
 import { PokeAddProps } from "./types";
 
 export default function PokeAddForm({ pokemon, onSuccess }: PokeAddProps) {
   const [name, setName] = useState("");
-  const [create, { loading, error }] = useMutatePokemon(CREATE);
+  const [create, { loading, error }] = useCreatePokemon();
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     try {
@@ -22,8 +22,10 @@ export default function PokeAddForm({ pokemon, onSuccess }: PokeAddProps) {
   return (
     <form onSubmit={onSubmit} data-testid="add-pokemon-form">
       <Box sx={{ mt: 500 }}>
-        <Text sx={{ mb: 300 }}>Now enter your {pokemon.name} nickname</Text>
-        <TextInput name="name" onChange={handleChange} />
+        <Text as="label" sx={{ mb: 300 }} htmlFor="name">
+          Now enter your {pokemon.name} nickname
+        </Text>
+        <TextInput id="name" name="name" onChange={handleChange} />
         {error && <Text sx={{ mt: 300, color: "text-error" }}>{error}</Text>}
       </Box>
       <Box>

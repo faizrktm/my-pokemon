@@ -7,7 +7,7 @@ describe("PokeCard", () => {
       <PokeCard image="https://via.placeholder.com/150" name="bulbasaur" />
     );
     expect(getByText("bulbasaur")).toBeInTheDocument();
-    const image = getByAltText("bulbasaur") as HTMLImageElement;
+    const image = getByAltText(/bulbasaur/i) as HTMLImageElement;
     expect(image.src).toContain("https://via.placeholder.com/150");
   });
 });

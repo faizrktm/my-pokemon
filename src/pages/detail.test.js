@@ -84,7 +84,9 @@ describe("pokemon detail page integration test", () => {
       const btn = getByTestId("catch-btn");
       userEvent.click(btn);
       // pokemon caught
-      expect(getByText(/gotcha/i)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(getByText(/gotcha/i)).toBeInTheDocument();
+      });
 
       // wait for lazy form to render
       await waitFor(() => screen.getByTestId("add-pokemon-form"));

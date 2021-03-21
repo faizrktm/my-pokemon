@@ -3,18 +3,15 @@ import { usePokemon } from "./MyPokemon";
 import {
   HandleCreate,
   HandleRemove,
-  UseMutatePokemon,
-  CREATE,
-  TypesOption,
+  UseCreatePokemon,
+  UseDeletePokemon,
 } from "./types";
 
 export * from "./types";
 
-export function useMutatePokemon<T extends TypesOption>(
-  type: T
-): UseMutatePokemon<T> {
+export function useCreatePokemon(): UseCreatePokemon {
   const [status, setStatus] = React.useState<string | null>(null);
-  const { create, remove } = usePokemon();
+  const { create } = usePokemon();
   const error = status && status !== "loading" ? status : null;
 
   const handleCreate: HandleCreate = (name, pokemon) =>
@@ -30,6 +27,14 @@ export function useMutatePokemon<T extends TypesOption>(
       }
     });
 
+  return [handleCreate, { loading: status === "loading", error }];
+}
+
+export function useDeletePokemon(): UseDeletePokemon {
+  const [status, setStatus] = React.useState<string | null>(null);
+  const { remove } = usePokemon();
+  const error = status && status !== "loading" ? status : null;
+
   const handleRemove: HandleRemove = (name) =>
     new Promise((resolve, reject) => {
       try {
@@ -43,8 +48,5 @@ export function useMutatePokemon<T extends TypesOption>(
       }
     });
 
-  return [
-    type === CREATE ? handleCreate : handleRemove,
-    { loading: status === "loading", error },
-  ] as any;
+  return [handleRemove, { loading: status === "loading", error }];
 }

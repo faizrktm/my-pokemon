@@ -3,8 +3,11 @@ import { keyframes } from "@emotion/react";
 
 import { Box, Image, PlainButton, Portal } from "../commons";
 import PokeBall from "../../assets/pokeball.svg";
-import PokeModal from "./PokeModal";
 import { PokeCatchProps } from "./types";
+
+const PokeModal = React.lazy(
+  () => import(/* webpackChunkName: "poke-modal" */ "./PokeModal")
+);
 
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
@@ -60,7 +63,7 @@ export default function PokeCatch({ name, image }: PokeCatchProps) {
           >
             <Image
               src={PokeBall}
-              alt="Pokeball Button"
+              alt="Pokeball Button to Catch Pokemon"
               sx={{
                 width: "60px",
                 height: "60px",

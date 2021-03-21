@@ -12,6 +12,7 @@ const Page = ({ children, title }: PageProps) => {
     <Main>
       <Box
         sx={{ flexDirection: "row", justifyContent: "space-between", mb: 500 }}
+        role="navigation"
       >
         <Link to="/">
           <Text>Home</Text>
@@ -22,25 +23,27 @@ const Page = ({ children, title }: PageProps) => {
           </Link>
         )}
       </Box>
-      {title ? (
-        <Box data-testid="title" sx={{ mb: 500 }}>
-          <Text
-            as="h1"
-            variant="heading"
-            sx={{ fontWeight: 400, textTransform: "capitalize" }}
-          >
-            {title}
-          </Text>
-        </Box>
-      ) : null}
-      {children}
+      <Box role="main">
+        {title ? (
+          <Box data-testid="title" sx={{ mb: 500 }}>
+            <Text
+              as="h1"
+              variant="heading"
+              sx={{ fontWeight: 400, textTransform: "capitalize" }}
+            >
+              {title}
+            </Text>
+          </Box>
+        ) : null}
+        {children}
+      </Box>
     </Main>
   );
 };
 
 export default Page;
 
-const Main = styled.main`
+const Main = styled.div`
   position: relative;
   min-height: 100vh;
   margin: 0px auto;

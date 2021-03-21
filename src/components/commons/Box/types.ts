@@ -9,4 +9,6 @@ export interface BoxProps {
   children?: React.ReactNode;
   sx: SX;
   as?: keyof JSX.IntrinsicElements;
+  role?: string;
+  tabIndex?: number;
 }
