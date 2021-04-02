@@ -51,6 +51,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: auto;
   grid-gap: ${spacing(500)};
+  margin-bottom: 1rem;
 
   ${breakpoint("tablet")`
     grid-template-columns: repeat(2, minmax(0, 1fr));

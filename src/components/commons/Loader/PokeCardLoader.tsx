@@ -5,15 +5,23 @@ import styled from "@emotion/styled";
 import { spacing } from "../../../utils/theme";
 import { shimmer } from "./styles";
 
-export default function PokeCardLoader() {
+interface PokeCardLoaderProps {
+  length: number;
+}
+
+export default function PokeCardLoader({ length }: PokeCardLoaderProps) {
   return (
     <Container>
-      {[...new Array(4)].map((_, index) => (
+      {[...new Array(length)].map((_, index) => (
         <Loader key={index} css={shimmer} />
       ))}
     </Container>
   );
 }
+
+PokeCardLoader.defaultProps = {
+  length: 4,
+};
 
 const Container = styled.div`
   display: grid;
