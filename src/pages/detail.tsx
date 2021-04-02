@@ -1,12 +1,17 @@
-import * as React from "react";
+import { lazy, Suspense } from "react";
 import { useQuery } from "@apollo/client";
 import { useParams, useLocation } from "react-router-dom";
 
 import { GET_POKEMON, PokemonDetail, PokemonVars } from "../query";
-import { Badge, BlockLoader, Box, Image, Page, Text } from "../components";
+import { Badge } from "../components/commons/Badge";
+import { Box } from "../components/commons/Box";
+import { Text } from "../components/commons/Text";
+import { Page } from "../components/commons/Page";
+import { Image } from "../components/commons/Image";
+import BlockLoader from "../components/commons/Loader/BlockLoader";
 import Detail from "../components/pokemons/Detail";
 
-const PokeCatch = React.lazy(
+const PokeCatch = lazy(
   () =>
     import(
       /* webpackChunkName: "poke-catch" */ "../components/pokemons/PokeCatch"
@@ -62,9 +67,9 @@ export default function DetailPage() {
           />
         </Box>
         <Detail moves={moves} />
-        <React.Suspense fallback={null}>
+        <Suspense fallback={null}>
           {!!pokemon && <PokeCatch name={id} image={pokeImage} />}
-        </React.Suspense>
+        </Suspense>
       </Box>
     </Page>
   );

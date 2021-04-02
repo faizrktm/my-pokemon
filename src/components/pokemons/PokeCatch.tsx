@@ -1,11 +1,14 @@
-import * as React from "react";
+import { lazy, useState } from "react";
 import { keyframes } from "@emotion/react";
 
-import { Box, Image, PlainButton, Portal } from "../commons";
+import { Box } from "../commons/Box";
+import { Image } from "../commons/Image";
+import PlainButton from "../commons/Button/PlainButton";
+import { Portal } from "../commons/Portal";
 import PokeBall from "../../assets/pokeball.svg";
 import { PokeCatchProps } from "./types";
 
-const PokeModal = React.lazy(
+const PokeModal = lazy(
   () => import(/* webpackChunkName: "poke-modal" */ "./PokeModal")
 );
 
@@ -28,7 +31,7 @@ const bounce = keyframes`
 `;
 
 export default function PokeCatch({ name, image }: PokeCatchProps) {
-  const [result, setResult] = React.useState<boolean | null>(null);
+  const [result, setResult] = useState<boolean | null>(null);
 
   const handleGatcha = () => {
     setResult(Math.random() < 0.5);

@@ -1,4 +1,6 @@
-import { Badge, Box, Text } from "../commons";
+import { Text } from "../commons/Text";
+import { Badge } from "../commons/Badge";
+import { Box } from "../commons/Box";
 import { DetailProps } from "./types";
 
 export default function Detail({ moves }: DetailProps) {

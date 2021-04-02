@@ -1,11 +1,15 @@
-import * as React from "react";
+import { lazy } from "react";
 import { useQuery } from "@apollo/client";
 import { NetworkStatus } from "@apollo/client";
 
 import { GET_POKEMONS, PokemonData, PokemonVars } from "../query";
-import { Button, Page, Text, Box, PokeCardLoader } from "../components";
+import { Page } from "../components/commons/Page";
+import Button from "../components/commons/Button/Button";
+import { Text } from "../components/commons/Text";
+import PokeCardLoader from "../components/commons/Loader/PokeCardLoader";
+import { Box } from "../components/commons/Box";
 
-const List = React.lazy(
+const List = lazy(
   () =>
     import(/* webpackChunkName: "poke-list" */ "../components/pokemons/List")
 );

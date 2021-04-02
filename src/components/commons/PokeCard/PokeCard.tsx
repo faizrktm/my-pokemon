@@ -1,10 +1,19 @@
-import { Box } from "../Box";
+import { lazy } from "react";
 import { Card } from "../Card";
 import { Text } from "../Text";
 import { Image } from "../Image";
-import PlainButton from "../Button/PlainButton";
 import Delete from "../../../assets/delete.svg";
 import { PokeCardProps } from "./types";
+
+const PlainButton = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "poke-card-delete-button" */ "../Button/PlainButton"
+    )
+);
+const Box = lazy(
+  () => import(/* webpackChunkName: "poke-card-box" */ "../Box/Box")
+);
 
 export default function PokeCard({
   image,
