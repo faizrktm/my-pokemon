@@ -23,7 +23,7 @@ const Page = ({ children, title }: PageProps) => {
           </Link>
         )}
       </Box>
-      <Box role="main">
+      <Box role="main" sx={{ flexGrow: 1 }}>
         {title ? (
           <Box data-testid="title" sx={{ mb: 500 }}>
             <Text

@@ -1,15 +1,28 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import styled from "@emotion/styled";
+import { css, jsx } from "@emotion/react";
 import { shimmer } from "./styles";
 
-export default function BlockLoader() {
-  return <Loader css={shimmer} />;
+interface BlockLoaderProps {
+  width?: string;
+  height?: string;
 }
 
-const Loader = styled.div`
-  display: block;
-  min-height: 100px;
-  border-radius: 8px;
-`;
+export default function BlockLoader({ height, width }: BlockLoaderProps) {
+  return (
+    <div
+      css={css`
+        ${shimmer};
+        display: block;
+        border-radius: 8px;
+        height: ${height};
+        width: ${width};
+      `}
+    />
+  );
+}
+
+BlockLoader.defaultProps = {
+  height: "100px",
+  width: "auto",
+};
