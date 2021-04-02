@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ListProps } from "./types";
 import { breakpoint, spacing } from "../../utils/theme";
 import { PokeCard } from "../commons/PokeCard";
-import { useDeletePokemon } from "../MyPokemon";
+import useDeletePokemon from "../MyPokemon/useDeletePokemon";
 
 export default function List({ data, isPokeBag }: ListProps) {
   const [remove] = useDeletePokemon();
@@ -15,34 +15,31 @@ export default function List({ data, isPokeBag }: ListProps) {
 
   return (
     <Container data-testid="pokemon-list">
-      {isPokeBag
-        ? data?.map(({ id, image, name, nickname }) => (
-            <Link
-              key={id}
-              to={{
-                pathname: `/${name}`,
-                state: { image: image },
-              }}
-            >
-              <PokeCard
-                image={image}
-                subname={name}
-                name={nickname || ""}
-                onClickDelete={handleDelete}
-              />
-            </Link>
-          ))
-        : data?.map(({ id, image, name }) => (
-            <Link
-              key={id}
-              to={{
-                pathname: `/${name}`,
-                state: { image },
-              }}
-            >
-              <PokeCard image={image} name={name} />
-            </Link>
-          ))}
+      {data?.map(({ id, image, name, nickname }) => {
+        let props;
+        if (isPokeBag) {
+          props = {
+            name: nickname || "",
+            subname: name,
+            onClickDelete: handleDelete,
+          };
+        } else {
+          props = {
+            name,
+          };
+        }
+        return (
+          <Link
+            key={id}
+            to={{
+              pathname: `/${name}`,
+              state: { image: image },
+            }}
+          >
+            <PokeCard image={image} {...props} />
+          </Link>
+        );
+      })}
     </Container>
   );
 }

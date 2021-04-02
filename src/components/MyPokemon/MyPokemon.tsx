@@ -1,4 +1,4 @@
-import * as React from "react";
+import { createContext, useState, useContext } from "react";
 import {
   PokemonProviderContextState,
   PokemonProviderProps,
@@ -6,12 +6,12 @@ import {
   CreatePokemonType,
 } from "./types";
 
-const PokemonContext = React.createContext({} as PokemonProviderContextState);
+const PokemonContext = createContext({} as PokemonProviderContextState);
 
 const storageKey = "my-pokemon";
 
 export function PokemonProvider({ children }: PokemonProviderProps) {
-  const [data, setData] = React.useState(() => {
+  const [data, setData] = useState(() => {
     const pokemons = localStorage.getItem(storageKey);
     return pokemons !== null ? JSON.parse(pokemons) : null;
   });
@@ -57,6 +57,6 @@ export function PokemonProvider({ children }: PokemonProviderProps) {
 }
 
 export const usePokemon = () => {
-  const state = React.useContext(PokemonContext);
+  const state = useContext(PokemonContext);
   return state;
 };

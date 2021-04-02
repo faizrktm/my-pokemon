@@ -1,6 +1,8 @@
 import { useHistory } from "react-router-dom";
 
-import { Box, Button, Text } from "../commons";
+import { Text } from "../commons/Text";
+import { Box } from "../commons/Box";
+import Button from "../commons/Button/Button";
 import { PokeAddSuccessProps } from "./types";
 
 export default function PokeAddSuccess({ handleClose }: PokeAddSuccessProps) {

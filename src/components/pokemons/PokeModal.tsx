@@ -1,7 +1,10 @@
 import { lazy, Suspense, useState } from "react";
 import styled from "@emotion/styled";
 
-import { BlockLoader, Box, Button, Text } from "../commons";
+import { Box } from "../commons/Box";
+import { Text } from "../commons/Text";
+import Button from "../commons/Button/Button";
+import BlockLoader from "../commons/Loader/BlockLoader";
 import { PokeModalProps } from "./types";
 
 const PokeAddForm = lazy(

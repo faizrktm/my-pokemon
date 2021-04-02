@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Box, Button, Text, TextInput } from "../commons";
-import { useCreatePokemon } from "../MyPokemon";
+import { Box } from "../commons/Box";
+import { Text } from "../commons/Text";
+import { TextInput } from "../commons/TextInput";
 import { PokeAddProps } from "./types";
+import Button from "../commons/Button/Button";
+import useCreatePokemon from "../MyPokemon/useCreatePokemon";
 
 export default function PokeAddForm({ pokemon, onSuccess }: PokeAddProps) {
   const [name, setName] = useState("");

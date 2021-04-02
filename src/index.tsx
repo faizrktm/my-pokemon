@@ -1,4 +1,4 @@
-import * as React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { ThemeProvider } from "@emotion/react";
@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import theme from "./constants/theme";
-import { PokemonProvider } from "./components/MyPokemon";
+import { PokemonProvider } from "./components/MyPokemon/MyPokemon";
 import offsetLimitPagination from "./utils/offsetLimitPagination";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
@@ -25,7 +25,7 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
+  <StrictMode>
     <ThemeProvider theme={theme}>
       <PokemonProvider>
         <ApolloProvider client={client}>
@@ -33,7 +33,7 @@ ReactDOM.render(
         </ApolloProvider>
       </PokemonProvider>
     </ThemeProvider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById("root")
 );
 
