@@ -1,15 +1,17 @@
 import * as React from "react";
 import { useQuery } from "@apollo/client";
+import { NetworkStatus } from "@apollo/client";
 
 import { GET_POKEMONS, PokemonData, PokemonVars } from "../query";
-import { Button, Page, Text, Box } from "../components";
+import { Button, Page, Text, Box, PokeCardLoader } from "../components";
+
 const List = React.lazy(
   () =>
     import(/* webpackChunkName: "poke-list" */ "../components/pokemons/List")
 );
 
 export default function App() {
-  const { data, fetchMore, loading, error } = useQuery<
+  const { data, fetchMore, error, networkStatus } = useQuery<
     PokemonData,
     PokemonVars
   >(GET_POKEMONS, {
@@ -20,32 +22,29 @@ export default function App() {
     },
   });
 
+  const { pokemons } = data || {};
+  const { results, nextOffset } = pokemons || {};
+  const hasMore = (nextOffset || -1) > 0;
+
+  const loadingFirstTime = networkStatus === NetworkStatus.loading;
+  const loadingFetchMore = networkStatus === NetworkStatus.fetchMore;
+
   const fetchNext = () => {
     try {
       fetchMore({
         variables: {
-          offset: data?.pokemons?.nextOffset,
+          offset: nextOffset,
           limit: 10,
         },
       });
     } catch (_) {}
   };
 
-  const hasMore = (data?.pokemons?.nextOffset || 0) > 0;
-
   return (
     <Page title="Pokedex">
-      <List data={data?.pokemons?.results} />
-      {loading && (
-        <Box
-          sx={{
-            mt: 700,
-          }}
-        >
-          <Text variant="label" sx={{ textAlign: "center" }}>
-            Loading ...
-          </Text>
-        </Box>
+      {!loadingFirstTime && results?.length && <List data={results} />}
+      {(loadingFirstTime || loadingFetchMore) && (
+        <PokeCardLoader length={loadingFirstTime ? 4 : 2} />
       )}
       {error && (
         <Box
@@ -58,7 +57,7 @@ export default function App() {
           </Text>
         </Box>
       )}
-      {hasMore && !loading && (
+      {hasMore && !loadingFirstTime && !loadingFetchMore && (
         <Button
           onClick={fetchNext}
           sx={{

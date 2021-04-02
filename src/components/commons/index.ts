@@ -8,3 +8,4 @@ export * from "./Badge";
 export * from "./Image";
 export * from "./Portal";
 export * from "./TextInput";
+export * from "./Loader";

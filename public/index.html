@@ -24,6 +24,27 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    
+    <!-- preconnect for faster communication font origin -->
+    <link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin />
+    
+    <!-- preload css font -->
+    <link rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" />
+    
+    <!-- This is a fallback if preload above is not supported -->
+    <!-- read: https://csswizardry.com/2020/05/the-fastest-google-fonts/ -->
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap"
+      media="print" onload="this.media='all'" />
+    
+    <!-- fallback for javascript disabled -->
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" />
+    </noscript>
     <title>Pokebag</title>
   </head>
   <body>

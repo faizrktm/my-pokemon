@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from "react";
 import styled from "@emotion/styled";
 
-import { Box, Button, Text } from "../commons";
+import { BlockLoader, Box, Button, Text } from "../commons";
 import { PokeModalProps } from "./types";
 
 const PokeAddForm = lazy(
@@ -36,7 +36,7 @@ export default function PokeModal({
           pb: 600,
         }}
       >
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<BlockLoader />}>
           {status === "success" ? (
             <PokeAddSuccess handleClose={handleClose} />
           ) : (

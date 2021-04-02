@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import theme from "./constants/theme";
 import { PokemonProvider } from "./components/MyPokemon";
 import offsetLimitPagination from "./utils/offsetLimitPagination";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const client = new ApolloClient({
   uri: "https://graphql-pokeapi.vercel.app/api/graphql",
@@ -40,3 +41,8 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.register();

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { PageLoader } from "./components";
 
 const Home = React.lazy(
   () => import(/* webpackChunkName: "home-page" */ "./pages/index")
@@ -14,7 +15,7 @@ const Pokebag = React.lazy(
 export default function App() {
   return (
     <Router>
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<PageLoader />}>
         <Switch>
           <Route exact path="/">
             <Home />
