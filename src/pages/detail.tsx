@@ -56,7 +56,7 @@ export default function DetailPage() {
           )}
         </Box>
         <Detail moves={data?.pokemon?.moves} />
-        <React.Suspense fallback={<div>Loading Ball</div>}>
+        <React.Suspense fallback={null}>
           {!!data?.pokemon && <PokeCatch name={id} image={state?.image} />}
         </React.Suspense>
       </Box>

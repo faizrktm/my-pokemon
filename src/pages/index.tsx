@@ -2,7 +2,8 @@ import * as React from "react";
 import { useQuery } from "@apollo/client";
 
 import { GET_POKEMONS, PokemonData, PokemonVars } from "../query";
-import { Button, Page, Text, Box } from "../components";
+import { Button, Page, Text, Box, PokeCardLoader } from "../components";
+
 const List = React.lazy(
   () =>
     import(/* webpackChunkName: "poke-list" */ "../components/pokemons/List")
@@ -20,33 +21,25 @@ export default function App() {
     },
   });
 
+  const { pokemons } = data || {};
+  const { results, nextOffset } = pokemons || {};
+  const hasMore = (nextOffset || -1) > 0;
+
   const fetchNext = () => {
     try {
       fetchMore({
         variables: {
-          offset: data?.pokemons?.nextOffset,
+          offset: nextOffset,
           limit: 10,
         },
       });
     } catch (_) {}
   };
 
-  const hasMore = (data?.pokemons?.nextOffset || 0) > 0;
-
   return (
     <Page title="Pokedex">
-      <List data={data?.pokemons?.results} />
-      {loading && (
-        <Box
-          sx={{
-            mt: 700,
-          }}
-        >
-          <Text variant="label" sx={{ textAlign: "center" }}>
-            Loading ...
-          </Text>
-        </Box>
-      )}
+      {!loading && results?.length && <List data={results} />}
+      {loading && <PokeCardLoader />}
       {error && (
         <Box
           sx={{
